@@ -17,7 +17,7 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | View About page                                     |  about.jsx         |      none         |   none       |
 | View History page                                   |  history.jsx       |      none         |   none       |
 | Login as franchisee<br/>(f@jwt.com, pw: franchisee) |  login.jsx         | [PUT]/api/auth    | INSERT INTO auth (token, userId) VALUES (?, ?) ON DUPLICATE KEY UPDATE token=token  |
-| View franchise<br/>(as franchisee)                  |franchiseDashboard.jsx|  none           |   none       |
+| View franchise<br/>(as franchisee)                  |franchiseDashboard.jsx| [GET]/api/franchise/:userId | SELECT objectId FROM userRole WHERE role='franchisee' AND userId=?    SELECT id, name FROM franchise WHERE id in (${franchiseIds.join(',')})    SELECT u.id, u.name, u.email FROM userRole AS ur JOIN user AS u ON u.id=ur.userId WHERE ur.objectId=? AND ur.role='franchisee'    SELECT s.id, s.name, COALESCE(SUM(oi.price), 0) AS totalRevenue FROM dinerOrder AS do JOIN orderItem AS oi ON do.id=oi.orderId RIGHT JOIN store AS s ON s.id=do.storeId WHERE s.franchiseId=? GROUP BY s.id |
 | Create a store                                      | createStore.jsx    | [POST]/api/franchise/:franchiseId/store | INSERT INTO store (franchiseId, name) VALUES (?, ?) |
 | Close a store                                       | closeStore.jsx     | [DELETE]/api/franchise/:franchiseId/store/:storeId | DELETE FROM store WHERE franchiseId=? AND id=? |
 | Login as admin<br/>(a@jwt.com, pw: admin)           |  login.jsx         | [PUT]/api/auth    | INSERT INTO auth (token, userId) VALUES (?, ?) ON DUPLICATE KEY UPDATE token=token |
