@@ -40,8 +40,14 @@ jobs:
 
       - name: Run tests
         run: |
+          # npx playwright install --with-deps chromium
+          # npm run test:coverage
+          npm ci
           npx playwright install --with-deps chromium
-          npm run test:coverage
+          npm run build
+          cp dist/index.html dist/404.html
+          npm run serve &  # Start server in background
+          npx playwright test
 
       - name: Update coverage
         run: |

@@ -10,7 +10,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "playwright test",
-    "test:coverage": "nyc --reporter=json-summary --reporter=text playwright test"
+    "test:coverage": "nyc --reporter=json-summary --reporter=text playwright test",
+    "serve": "http-server dist -p 5173"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
@@ -18,6 +19,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "http-server": "^14.1.1",
     "nyc": "^17.1.0",
     "playwright-test-coverage": "^1.2.12",
     "postcss": "^8.4.38",
