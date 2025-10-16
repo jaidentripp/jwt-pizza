@@ -122,6 +122,34 @@ class HttpPizzaService implements PizzaService {
     localStorage.setItem('token', token);
     return Promise.resolve(user);
   }
+
+  // async getAllUsers(page: number = 0, limit: number = 10, filter: string = '*') {
+  //   return this.callEndpoint(`/api/user?page=${page}&limit=${limit}&name=${filter}`);
+  // }
+
+  // Add this inside the HttpPizzaService class
+  // async getUsers(page: number = 0, limit: number = 10, nameFilter: string = '*'): Promise<{ users: User[]; more: boolean }> {
+  //   const result = await this.callEndpoint(`/api/user?page=${page}&limit=${limit}&name=${nameFilter}`);
+  //   return result; // assuming your backend now returns { users, more }
+  // }
+
+  // pizzaService.ts
+  // async getUsers(page = 0, limit = 10, nameFilter = '*'): Promise<{ users: User[]; more: boolean }> {
+  //   return this.callEndpoint(`/api/user?page=${page}&limit=${limit}&name=${nameFilter}`, 'GET');
+  // }
+
+  // async getUsers(page: number, limit: number, nameFilter: string = '') {
+  //   const filter = nameFilter ? `&name=${encodeURIComponent(nameFilter)}` : '';
+  //   return this.callEndpoint(`/api/user?page=${page}&limit=${limit}${filter}`);
+  // }
+  
+  async getUsers(page: number = 0, limit: number = 10, nameFilter: string = ''): Promise<UserList> {
+    return this.callEndpoint(`/api/user?page=${page}&limit=${limit}&name=${nameFilter}`);
+  }
+
+  async deleteUser(user: User): Promise<void> {
+    return this.callEndpoint(`/api/user/${user.id}`, 'DELETE');
+  }
 }
 
 const httpPizzaService = new HttpPizzaService();
