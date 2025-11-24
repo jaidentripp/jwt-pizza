@@ -1,4 +1,4 @@
-##**Curiosity Report – AWS Lambda**
+**Curiosity Report – AWS Lambda**
 
 **Why I Chose This Topic**
 
